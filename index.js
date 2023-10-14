@@ -11,7 +11,7 @@ function renderTodos() {
     const todoItem = document.createElement("li");
     todoItem.className = "todo-item";
     todoItem.innerHTML = `
-                    ${todo.text}
+                    <span>${todo.text}</span>
                     <button data-index="${index}" class="edit">Edit</button>
                     <button data-index="${index}" class="delete">Delete</button>
                     <button data-index="${index}" class="complete-toggle">Complete</button>
@@ -29,6 +29,7 @@ function renderCompletedTasks() {
     const completedItem = document.createElement("div");
     completedItem.className = "completed-item";
     completedItem.innerHTML = `
+                    <span class="checkmark">&#10004;</span>
                     <span>${task}</span>
                     <button data-index="${index}" class="delete-completed">Delete</button>
                 `;

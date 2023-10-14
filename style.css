@@ -1,9 +1,36 @@
 body {
   font-family: Arial, sans-serif;
+  background-image: url("/images/to-do-list-background.jpg");
 }
 .container {
-  max-width: 400px;
+  max-width: 70vw;
   margin: 0 auto;
+  background-color: rgba(255, 228, 196, 70%);
+  border-radius: 10px;
+  min-height: 95vh;
+}
+
+.container > h1 {
+  text-align: Center;
+}
+.input-field {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 30px;
+}
+.input-text {
+  padding: 10px 20px;
+  min-width: 40vw;
+  border-radius: 10px;
+  border: 0.5px solid;
+}
+.button {
+  border: 0.5px solid green;
+  padding: 5px 20px;
+  background-color: rgb(97, 212, 99);
+  /* color: white; */
+  border-radius: 10px;
+  font-weight: 600;
 }
 .todo-list {
   list-style: none;
@@ -11,22 +38,53 @@ body {
 }
 .todo-item {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
+  text-align: center;
   margin: 5px 0;
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
   padding: 5px;
 }
-.completed-list {
-  margin-top: 20px;
+.edit {
+  border-radius: 5px;
+  border: 0px;
+  background-color: rgb(207, 207, 244);
 }
+.delete {
+  border-radius: 5px;
+  border: 0px;
+  background-color: rgb(251, 114, 114);
+}
+.complete-toggle {
+  border-radius: 5px;
+  border: 0px;
+  background-color: rgb(97, 212, 99);
+}
+.clear-completed {
+  text-align: center;
+  margin-top: 100px;
+}
+
 .completed-item {
-  text-decoration: line-through;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  text-align: center;
+  /* border: 1px solid green; */
+  padding: 5px 10px;
 }
 .delete-completed {
-  background-color: red;
+  background-color: rgb(242, 64, 64);
   color: white;
   border: none;
   padding: 5px 10px;
   cursor: pointer;
+  margin-left: 10px;
+}
+.completed-item > button {
+  border-radius: 50px;
+}
+.checkmark {
+  margin-right: 5px;
+  color: green;
 }
