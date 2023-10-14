@@ -1,5 +1,6 @@
-// Retrieve todos from local storage
+// Retrieve todos and completed tasks from local storage
 const todos = JSON.parse(localStorage.getItem("todos")) || [];
+const completedTasks = JSON.parse(localStorage.getItem("completedTasks")) || [];
 
 // Function to render the todo list
 function renderTodos() {
@@ -8,7 +9,7 @@ function renderTodos() {
 
   todos.forEach((todo, index) => {
     const todoItem = document.createElement("li");
-    todoItem.className = `todo-item ${todo.completed ? "complete" : ""}`;
+    todoItem.className = "todo-item";
     todoItem.innerHTML = `
                     ${todo.text}
                     <button data-index="${index}" class="edit">Edit</button>
@@ -19,8 +20,25 @@ function renderTodos() {
   });
 }
 
+// Function to render the completed tasks
+function renderCompletedTasks() {
+  const completedList = document.getElementById("completed");
+  completedList.innerHTML = "";
+
+  completedTasks.forEach((task, index) => {
+    const completedItem = document.createElement("div");
+    completedItem.className = "completed-item";
+    completedItem.innerHTML = `
+                    <span>${task}</span>
+                    <button data-index="${index}" class="delete-completed">Delete</button>
+                `;
+    completedList.appendChild(completedItem);
+  });
+}
+
 // Initial render
 renderTodos();
+renderCompletedTasks();
 
 // Function to add a new todo
 function addTodo() {
@@ -28,7 +46,7 @@ function addTodo() {
   const taskText = taskInput.value.trim();
 
   if (taskText !== "") {
-    todos.push({ text: taskText, completed: false });
+    todos.push({ text: taskText });
     localStorage.setItem("todos", JSON.stringify(todos));
     taskInput.value = "";
     renderTodos();
@@ -49,11 +67,22 @@ function deleteTodo(index) {
   renderTodos();
 }
 
-// Function to toggle completion status
-function toggleComplete(index) {
-  todos[index].completed = !todos[index].completed;
+// Function to mark a todo as complete
+function completeTodo(index) {
+  const completedTask = todos[index].text;
+  completedTasks.push(completedTask);
+  localStorage.setItem("completedTasks", JSON.stringify(completedTasks));
+  todos.splice(index, 1);
   localStorage.setItem("todos", JSON.stringify(todos));
   renderTodos();
+  renderCompletedTasks();
+}
+
+// Function to delete a completed task
+function deleteCompletedTask(index) {
+  completedTasks.splice(index, 1);
+  localStorage.setItem("completedTasks", JSON.stringify(completedTasks));
+  renderCompletedTasks();
 }
 
 // Event listeners
@@ -66,11 +95,20 @@ document.getElementById("todos").addEventListener("click", (event) => {
   if (target.classList.contains("delete")) {
     deleteTodo(index);
   } else if (target.classList.contains("complete-toggle")) {
-    toggleComplete(index);
+    completeTodo(index);
   } else if (target.classList.contains("edit")) {
     const newText = prompt("Edit task:", todos[index].text);
     if (newText !== null) {
       editTodo(index, newText);
     }
+  }
+});
+
+document.getElementById("completed").addEventListener("click", (event) => {
+  const target = event.target;
+  const index = target.getAttribute("data-index");
+
+  if (target.classList.contains("delete-completed")) {
+    deleteCompletedTask(index);
   }
 });

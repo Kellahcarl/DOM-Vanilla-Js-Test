@@ -17,6 +17,16 @@ body {
   border: 1px solid #ccc;
   padding: 5px;
 }
-.todo-item.complete {
+.completed-list {
+  margin-top: 20px;
+}
+.completed-item {
   text-decoration: line-through;
+}
+.delete-completed {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
 }
