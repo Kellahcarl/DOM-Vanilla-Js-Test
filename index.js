@@ -10,11 +10,11 @@ function renderTodos() {
   todos.forEach((todo, index) => {
     const todoItem = document.createElement("li");
     todoItem.className = "todo-item";
-    todoItem.innerHTML = `
-                    <span>${todo.text}</span>
+    todoItem.innerHTML = `<span>${todo.text}</span><div class="control-btn">
                     <button data-index="${index}" class="edit">Edit</button>
                     <button data-index="${index}" class="delete">Delete</button>
-                    <button data-index="${index}" class="complete-toggle">Complete</button>
+                    <button data-index="${index}" class="complete-toggle">Complete</button></div>
+                    
                 `;
     todosList.appendChild(todoItem);
   });

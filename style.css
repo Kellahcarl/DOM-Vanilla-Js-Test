@@ -3,7 +3,7 @@ body {
   background-image: url("/images/to-do-list-background.jpg");
 }
 .container {
-  max-width: 70vw;
+  max-width: 60vw;
   margin: 0 auto;
   background-color: rgba(255, 228, 196, 70%);
   border-radius: 10px;
@@ -38,27 +38,34 @@ body {
 }
 .todo-item {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   text-align: center;
   margin: 5px 0;
   /* border: 1px solid #ccc; */
   padding: 5px;
 }
+.control-btn{
+  display: flex;
+  justify-content: space-between;
+}
 .edit {
   border-radius: 5px;
   border: 0px;
   background-color: rgb(207, 207, 244);
+  margin: 0px 10px
 }
 .delete {
   border-radius: 5px;
   border: 0px;
   background-color: rgb(251, 114, 114);
+  margin: 0px 10px
 }
 .complete-toggle {
   border-radius: 5px;
   border: 0px;
   background-color: rgb(97, 212, 99);
+  margin: 0px 10px
 }
 .clear-completed {
   text-align: center;
